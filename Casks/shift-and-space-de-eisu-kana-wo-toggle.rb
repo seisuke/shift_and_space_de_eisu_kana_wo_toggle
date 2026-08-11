@@ -4,10 +4,10 @@ cask "shift-and-space-de-eisu-kana-wo-toggle" do
 
   url "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle/releases/download/v#{version}/shift_and_space_de_eisu_kana_wo_toggle-#{version}.zip"
   name "shift_and_space_de_eisu_kana_wo_toggle"
-  desc "Toggle macOS Eisu/Kana input with Shift+Space"
+  desc "Toggle Eisu/Kana input with Shift+Space"
   homepage "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle"
 
-  depends_on macos: ">= :tahoe"
+  depends_on macos: :tahoe
 
   app "shift_and_space_de_eisu_kana_wo_toggle.app"
 
