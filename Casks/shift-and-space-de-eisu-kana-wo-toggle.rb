@@ -1,6 +1,6 @@
 cask "shift-and-space-de-eisu-kana-wo-toggle" do
   version "0.1.0"
-  sha256 :no_check
+  sha256 "339ec310215ad2ed1b1cad8d6e106c4ac54d300d42943cf702040b1a3b673fe8"
 
   url "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle/releases/download/v#{version}/shift_and_space_de_eisu_kana_wo_toggle-#{version}.zip"
   name "shift_and_space_de_eisu_kana_wo_toggle"
