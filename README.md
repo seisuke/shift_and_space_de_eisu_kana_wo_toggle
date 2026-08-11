@@ -1,6 +1,6 @@
 # shift_and_space_de_eisu_kana_wo_toggle
 
-macOS Tahoe以降で、左Shift+Spaceを押すたびに英数入力とかな入力を切り替える、
+macOS Sequoia 15.5以降で、左Shift+Spaceを押すたびに英数入力とかな入力を切り替える、
 小さなメニューバー常駐アプリです。
 ログインセッション全体のキーイベントを監視します。
 
@@ -24,7 +24,7 @@ open "/Applications/shift_and_space_de_eisu_kana_wo_toggle.app"
 ## 必要環境
 
 - Apple Silicon Mac
-- macOS Tahoe 26以降
+- macOS Sequoia 15.5以降
 - Xcode 26以降（ソースからビルドする場合）
 
 ## ソースからビルド

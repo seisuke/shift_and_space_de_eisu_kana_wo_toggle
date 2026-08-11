@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "shift_and_space_de_eisu_kana_wo_toggle",
-    platforms: [.macOS(.v26)],
+    platforms: [.macOS("15.5")],
     products: [
         .executable(
             name: "shift_and_space_de_eisu_kana_wo_toggle",
