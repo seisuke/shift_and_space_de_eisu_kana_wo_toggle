@@ -42,24 +42,7 @@ make install
 open "$HOME/Applications/shift_and_space_de_eisu_kana_wo_toggle.app"
 ```
 
+`make install`では、このMac上でビルドしたアプリにad hoc署名を行います。
+
 アイコンから、機能の一時停止、ログイン時起動、アクセシビリティ設定、
 アプリの再起動、終了を操作できます。
-
-## 権限と署名
-
-キーイベントを監視・変更するため、App Sandboxは使用していません。
-`make install`では、このMac上でビルドしたアプリにad hoc署名を行います。
-Homebrew Caskでは、GitHub Releaseで配布する公証済みアプリをインストールします。
-
-GitHub Releaseのビルド済みアプリはDeveloper IDで署名し、Appleの公証を受けて
-配布します。リリース用のGitHub Actionsには次のRepository secretsが必要です。
-
-- `DEVELOPER_ID_CERTIFICATE_BASE64`: 秘密鍵を含むDeveloper ID Application証明書（`.p12`）をBase64化した値
-- `DEVELOPER_ID_CERTIFICATE_PASSWORD`: `.p12`の書き出しパスワード
-- `KEYCHAIN_PASSWORD`: Actions内で一時的に作成するキーチェーンのパスワード
-- `APPLE_ID`: 公証に使用するApple Account
-- `APPLE_APP_SPECIFIC_PASSWORD`: Apple Accountのアプリ用パスワード
-- `APPLE_TEAM_ID`: Apple Developer ProgramのTeam ID
-
-`v`から始まるタグをpushすると、署名、Hardened Runtimeの有効化、公証、
-公証チケットの付与と検証を行い、GitHub ReleaseへZIPを公開します。
