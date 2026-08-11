@@ -1,6 +1,6 @@
 cask "shift-and-space-de-eisu-kana-wo-toggle" do
-  version "0.1.0"
-  sha256 "339ec310215ad2ed1b1cad8d6e106c4ac54d300d42943cf702040b1a3b673fe8"
+  version "0.2.0"
+  sha256 "d5b8bb1c63045add4136d47a826420b3cf248aa8f385f440c2aa91758bdb3168"
 
   url "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle/releases/download/v#{version}/shift_and_space_de_eisu_kana_wo_toggle-#{version}.zip"
   name "shift_and_space_de_eisu_kana_wo_toggle"
@@ -8,7 +8,7 @@ cask "shift-and-space-de-eisu-kana-wo-toggle" do
   homepage "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle"
 
   depends_on arch: :arm64
-  depends_on macos: :tahoe
+  depends_on macos: :sequoia
 
   app "shift_and_space_de_eisu_kana_wo_toggle.app"
 
