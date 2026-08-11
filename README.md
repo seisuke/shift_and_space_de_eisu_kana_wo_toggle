@@ -12,9 +12,9 @@ macOS Tahoe以降で、左Shift+Spaceを押すたびに英数入力とかな入�
 Homebrewでインストールします。
 
 ```sh
-brew tap seisuke/shift-and-space-de-eisu-kana-wo-toggle
-brew install --HEAD shift-and-space-de-eisu-kana-wo-toggle
-open "$(brew --prefix shift-and-space-de-eisu-kana-wo-toggle)/shift_and_space_de_eisu_kana_wo_toggle.app"
+brew tap seisuke/shift-and-space-de-eisu-kana-wo-toggle https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle
+brew install --cask shift-and-space-de-eisu-kana-wo-toggle
+open "/Applications/shift_and_space_de_eisu_kana_wo_toggle.app"
 ```
 
 初回起動時は「システム設定 → プライバシーとセキュリティ →
@@ -24,7 +24,7 @@ open "$(brew --prefix shift-and-space-de-eisu-kana-wo-toggle)/shift_and_space_de
 ## 必要環境
 
 - macOS Tahoe 26以降
-- Xcode 26以降（Homebrewまたはソースからビルドする場合）
+- Xcode 26以降（ソースからビルドする場合）
 
 ## ソースからビルド
 
@@ -47,5 +47,18 @@ open "$HOME/Applications/shift_and_space_de_eisu_kana_wo_toggle.app"
 ## 権限と署名
 
 キーイベントを監視・変更するため、App Sandboxは使用していません。
-Homebrewおよび`make install`では、このMac上でビルドしたアプリにad hoc署名を
-行います。
+`make install`では、このMac上でビルドしたアプリにad hoc署名を行います。
+Homebrew Caskでは、GitHub Releaseで配布する公証済みアプリをインストールします。
+
+GitHub Releaseのビルド済みアプリはDeveloper IDで署名し、Appleの公証を受けて
+配布します。リリース用のGitHub Actionsには次のRepository secretsが必要です。
+
+- `DEVELOPER_ID_CERTIFICATE_BASE64`: 秘密鍵を含むDeveloper ID Application証明書（`.p12`）をBase64化した値
+- `DEVELOPER_ID_CERTIFICATE_PASSWORD`: `.p12`の書き出しパスワード
+- `KEYCHAIN_PASSWORD`: Actions内で一時的に作成するキーチェーンのパスワード
+- `APPLE_ID`: 公証に使用するApple Account
+- `APPLE_APP_SPECIFIC_PASSWORD`: Apple Accountのアプリ用パスワード
+- `APPLE_TEAM_ID`: Apple Developer ProgramのTeam ID
+
+`v`から始まるタグをpushすると、署名、Hardened Runtimeの有効化、公証、
+公証チケットの付与と検証を行い、GitHub ReleaseへZIPを公開します。

@@ -3,6 +3,9 @@ set -euo pipefail
 
 root_dir=${0:A:h:h}
 configuration=${CONFIGURATION:-release}
+version=${VERSION:-0.1.0}
+build_number=${BUILD_NUMBER:-1}
+code_sign_identity=${CODE_SIGN_IDENTITY:--}
 app_name=shift_and_space_de_eisu_kana_wo_toggle
 bundle_identifier=com.seisuke.shift-and-space-de-eisu-kana-wo-toggle
 build_dir="$root_dir/.build/app"
@@ -21,6 +24,10 @@ mkdir -p "$contents_dir/MacOS" "$contents_dir/Resources" "$iconset_dir"
 cp "$binary_path" "$contents_dir/MacOS/$app_name"
 cp Resources/Info.plist "$contents_dir/Info.plist"
 cp Resources/StatusKana.png Resources/StatusEisu.png "$contents_dir/Resources/"
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" \
+    "$contents_dir/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $build_number" \
+    "$contents_dir/Info.plist"
 
 swift scripts/generate_icon.swift "$build_dir/AppIcon-1024.png"
 for spec in '16 icon_16x16.png' '32 icon_16x16@2x.png' \
@@ -35,8 +42,17 @@ for spec in '16 icon_16x16.png' '32 icon_16x16@2x.png' \
 done
 iconutil -c icns "$iconset_dir" -o "$contents_dir/Resources/AppIcon.icns"
 
-codesign --force --deep --sign - \
-    --identifier "$bundle_identifier" \
-    --requirements "=designated => identifier \"$bundle_identifier\"" \
-    "$app_dir"
+if [[ "$code_sign_identity" == "-" ]]; then
+    codesign --force --sign - \
+        --identifier "$bundle_identifier" \
+        --requirements "=designated => identifier \"$bundle_identifier\"" \
+        "$app_dir"
+else
+    codesign --force \
+        --options runtime \
+        --timestamp \
+        --sign "$code_sign_identity" \
+        --identifier "$bundle_identifier" \
+        "$app_dir"
+fi
 echo "$app_dir"
