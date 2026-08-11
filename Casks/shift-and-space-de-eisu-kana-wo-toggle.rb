@@ -7,6 +7,7 @@ cask "shift-and-space-de-eisu-kana-wo-toggle" do
   desc "Toggle Eisu/Kana input with Shift+Space"
   homepage "https://github.com/seisuke/shift_and_space_de_eisu_kana_wo_toggle"
 
+  depends_on arch: :arm64
   depends_on macos: :tahoe
 
   app "shift_and_space_de_eisu_kana_wo_toggle.app"

@@ -23,6 +23,7 @@ open "/Applications/shift_and_space_de_eisu_kana_wo_toggle.app"
 
 ## 必要環境
 
+- Apple Silicon Mac
 - macOS Tahoe 26以降
 - Xcode 26以降（ソースからビルドする場合）
 
